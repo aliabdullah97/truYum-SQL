@@ -1,0 +1,31 @@
+CREATE DATABASE truYum;
+USE truYum;
+DESCRIBE cart;
+CREATE TABLE user(
+U_id INT AUTO_INCREMENT PRIMARY KEY,
+U_name VARCHAR(30)
+);
+
+CREATE TABLE menu_Item(
+M_id INT AUTO_INCREMENT PRIMARY KEY,
+Name VARCHAR(30),
+Price DECIMAL(6,2),
+Active VARCHAR(3),
+Date_of_Launch DATE,
+Category VARCHAR(20),
+Free_Delivery VARCHAR(3)
+); 
+
+CREATE TABLE cart(
+cart_id INT AUTO_INCREMENT PRIMARY KEY,
+menuItem_id INT,
+user_id INT
+);
+
+ALTER TABLE cart
+ADD CONSTRAINT FK_ForeignKey 
+FOREIGN KEY(menuItem_id) REFERENCES menu_Item(M_id);
+
+ALTER TABLE cart
+ADD CONSTRAINT FK_ForeignKeyUser 
+FOREIGN KEY(user_id) REFERENCES user(U_id);
